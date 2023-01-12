@@ -1,6 +1,6 @@
 <!--
     triangle.html
-    Erik Fredericks
+    Erik Fredericks with small color addition by Meghan Harris
     Barebones triangle webGL
 -->
 <!DOCTYPE html>
@@ -8,13 +8,14 @@
   <head>
     <meta charset="utf-8" />
     <!-- define our shaders! -->
+    <!-- Shade changes -->
     <script id="vertex-shader" type="x-shader/x-vertex">
       attribute vec4 vPosition;
       void main() {
           gl_Position = vPosition;
       }
     </script>
-
+    <!-- Color changes -->
     <script id="fragment-shader" type="x-shader/x-fragment">
       precision mediump float;
       void main() {
