@@ -4,9 +4,14 @@ var gl;
 var points;
 
 // Once browser loaded, run this js code, aka main()
+// Purpose is to set up the WebGL context and start rendering content
 window.onload = function init() {
   // Setup our canvas and WebGL
+  // Acts as our reference to canvas
   var canvas = document.getElementById("gl-canvas");
+
+  // Get a context for the canvas
+  // If not null, gl is our reference to the context
   gl = WebGLUtils.setupWebGL(canvas);
   if (!gl) {
     alert("WebGL unavailable");
