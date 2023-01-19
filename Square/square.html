@@ -1,12 +1,12 @@
 <!--
     square.html
     Erik Fredericks with small color addition by Meghan Harris
-    Barebones triangle webGL
+    Barebones square webGL
 -->
-
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8" />
     <!-- Both shaders gl_Position and gl_FragColor are full programs -->
     <script id="vertex-shader" type="x-shader/x-vertex">
       attribute vec4 vPosition;
@@ -18,7 +18,7 @@
     <script id="fragment-shader" type="x-shader/x-fragment">
       void main()
       {
-          gl_FragColor = vec4(0.0,0.5,0.0,0.5);
+          gl_FragColor = vec4(0.0, 0.5, 0.0, 0.5);
       }
     </script>
     <script type="text/javascript" src="../Common/webgl-utils.js"></script>
