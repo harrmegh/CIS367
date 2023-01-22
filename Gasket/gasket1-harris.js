@@ -5,6 +5,10 @@ var gl;
 var points;
 var NumPoints = 5000;
 
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
 // Main function to set up WebGL object and render the image
 window.onload = function init() {
   var canvas = document.getElementById("gl-canvas");
@@ -13,7 +17,9 @@ window.onload = function init() {
     alert("WebGL isn't available");
   }
   // First, initialize the corners of our gasket with three points.
-  var vertices = [vec2(-1, -1), vec2(0, 1), vec2(1, -1)];
+  var vertices = [vec2(-1, -1), vec2(0, 1), vec2(1, -1)]; // rightside up
+  // var vertices = [vec2(-1, 1), vec2(0, -1), vec2(1, 1)]; // upside down
+  // var vertices = [vec2(-1, 1), vec2(1, 0), vec2(-1, -1)]; // Sideways
 
   // Specify a starting point p for our iterations
   // p must lie inside any set of three vertices
@@ -30,7 +36,8 @@ window.onload = function init() {
   for (var i = 0; points.length < NumPoints; ++i) {
     var j = Math.floor(Math.random() * 3);
     p = add(points[i], vertices[j]);
-    p = scale(0.5, p);
+    p = scale(getRandomArbitrary(0.1, 0.4), p); // Add randomness to scale
+    // p = scale(0.5, p);
     points.push(p);
   }
 
