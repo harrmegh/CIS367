@@ -10,3 +10,7 @@ h1 {
     height: 87px;
     white-space: nowrap;
 }
+
+body {
+    background-image: url("https://harrmegh.github.io/CIS367/Styles/Assets/preview16.jpg");
+}
