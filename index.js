@@ -1,5 +1,4 @@
 window.onload = function init() {
-  ß;
   render();
 };
 
