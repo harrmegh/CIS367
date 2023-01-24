@@ -2,22 +2,25 @@
 // Erik Fredericks with a few notations by Meghan Harris
 // Graphics object
 var gl;
-var points;
 
 // Once browser loaded, run this js code, aka main()
 // Purpose is to set up the WebGL context and start rendering content
 // onload: where execution starts after all code is loaded into memory
+// this is important because canvas object needs to be preloaded into
+// memory.  Canvas element exists and we are sure of it.
 window.onload = function init() {
   // canvas element receives WebGL context from HTML file
   var canvas = document.getElementById("gl-canvas");
 
   gl = WebGLUtils.setupWebGL(canvas);
+  // When something goes wrong (i.e., old af browser)
   if (!gl) {
     alert("WebGL isn't available");
   }
 
   // Four vertices -- using vec2 type from the MV.js library
   // JS array different from C/Java: object with methods and properties
+  // Order of these matter!
   var vertices = [
     vec2(-0.5, -0.5),
     vec2(-0.5, 0.5),
@@ -32,6 +35,7 @@ window.onload = function init() {
   // Load shaders and initialize attribute buffers
   // initShadersL: load/compile/link shaders to form a program object
   var program = initShaders(gl, "vertex-shader", "fragment-shader");
+  // tel webGL to use the program defined above
   gl.useProgram(program);
 
   // Load the data into the GPU
@@ -39,6 +43,7 @@ window.onload = function init() {
   // flatten(): converts a JS array to array of float32
   var bufferId = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, bufferId);
+  // STATIC_DRAW because we are not animating
   gl.bufferData(gl.ARRAY_BUFFER, flatten(vertices), gl.STATIC_DRAW);
 
   // Associate our shader variables with our data buffer

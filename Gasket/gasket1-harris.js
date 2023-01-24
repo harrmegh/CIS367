@@ -23,8 +23,10 @@ window.onload = function init() {
 
   // Specify a starting point p for our iterations
   // p must lie inside any set of three vertices
+  // Happening in the CPU
   var u = add(vertices[0], vertices[1]);
   var v = add(vertices[0], vertices[2]);
+  // Scanle these vectors by 4
   var p = scale(0.25, add(u, v));
 
   // And, add our initial point into our array of points
@@ -33,6 +35,7 @@ window.onload = function init() {
   // Compute new points
   // Each new point is located midway between
   // last point and a randomly chosen vertex
+  // Happening in CPU
   for (var i = 0; points.length < NumPoints; ++i) {
     var j = Math.floor(Math.random() * 3);
     p = add(points[i], vertices[j]);
@@ -52,6 +55,7 @@ window.onload = function init() {
   // Load the data into the GPU
   var bufferId = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, bufferId);
+  // Flatten points instead of vertices
   gl.bufferData(gl.ARRAY_BUFFER, flatten(points), gl.STATIC_DRAW);
 
   // Associate out shader variables with our data buffer
