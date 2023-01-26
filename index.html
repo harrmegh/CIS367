@@ -2,8 +2,23 @@
 <html>
   <head>
     <title>Meghan Harris - CIS367 Project Webpage</title>
+    <meta charset="utf-8" />
     <link rel="stylesheet" href="Styles/styles.css" />
-    <script type="text/javascript" src="index.js"></script>
+
+    <!-- vec4 is a 4-component vector -->
+    <!-- include our libraries for WebGL -->
+    <script src="./Common/webgl-utils.js"></script>
+    <script src="./Common/initShaders.js"></script>
+    <script src="./Common/MV.js"></script>
+
+    <!-- the ACTUAL index code!! -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"
+      integrity="sha512-zhHQR0/H5SEBL3Wn6yYSaTTZej12z0hVZKOv3TwCUXT1z5qeqGcXJLLrbERYRScEDDpYIJhPC1fk31gqR783iQ=="
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script type="module" src="index.js" defer></script>
   </head>
   <body style="background: black">
     <div class="intro-container">
@@ -15,7 +30,9 @@
         </ul>
       </div>
       <div class="canvas">
-        <canvas></canvas>
+        <canvas id="gl-canvas" width="400" height="400">
+          Your browser doesn't support HTML5! Sorry.
+        </canvas>
       </div>
     </div>
   </body>
