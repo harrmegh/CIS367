@@ -6,27 +6,19 @@
     <link rel="stylesheet" href="Styles/styles.css" />
 
     <!-- vec4 is a 4-component vector -->
-    <script id="vertex-shader" type="x-shader/x-vertex">
-      attribute vec4 vPosition;
-      void main() {
-          gl_Position = vPosition;
-      }
-    </script>
-
-    <!-- Color changes -->
-    <script id="fragment-shader" type="x-shader/x-fragment">
-      precision mediump float;
-      void main() {
-          gl_FragColor = vec4(0.362, 0.274, 1.0, 1.0);
-      }
-    </script>
     <!-- include our libraries for WebGL -->
     <script src="./Common/webgl-utils.js"></script>
     <script src="./Common/initShaders.js"></script>
     <script src="./Common/MV.js"></script>
 
     <!-- the ACTUAL index code!! -->
-    <script type="text/javascript" src="index.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"
+      integrity="sha512-zhHQR0/H5SEBL3Wn6yYSaTTZej12z0hVZKOv3TwCUXT1z5qeqGcXJLLrbERYRScEDDpYIJhPC1fk31gqR783iQ=="
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script type="module" src="index.js" defer></script>
   </head>
   <body style="background: black">
     <div class="intro-container">
