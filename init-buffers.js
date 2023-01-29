@@ -71,7 +71,7 @@ function initColorBuffer(gl) {
   //   ];
 
   const faceColors = [
-    [0.6, 0.0, 0.6, 1.0], // Front face: Murple
+    [0.8, 0.0, 0.6, 1.0], // Front face: Murple
     [0.8, 0.0, 0.0, 1.0], // Back face: Blood Orange
     [1.0, 0.3, 0.3, 1.0], // Top face: Muted Red
     [1.0, 0.4, 0.0, 1.0], // Bottom face: Marigold
