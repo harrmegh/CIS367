@@ -39,7 +39,8 @@ window.onload = function init() {
   for (var i = 0; points.length < NumPoints; ++i) {
     var j = Math.floor(Math.random() * 3);
     p = add(points[i], vertices[j]);
-    p = scale(getRandomArbitrary(0.1, 0.4), p); // Add randomness to scale
+    // p = scale(getRandomArbitrary(0.1, 0.4), p); // Add randomness to scale
+    p = scale(getRandomArbitrary(0.1, 0.2), p);
     // p = scale(0.5, p);
     points.push(p);
   }
