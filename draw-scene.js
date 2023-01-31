@@ -1,3 +1,8 @@
+// draw-scene.js
+// Code by the devs at Mozilla.org
+// Once the shaders are established, the locations are looked up,
+// and the square plane's vertex positions put in a buffer, we can
+// actually render the scene.
 function drawScene(gl, programInfo, buffers, cubeRotation) {
   gl.clearColor(0.0, 0.0, 0.0, 1.0); // Clear to black, fully opaque
   gl.clearDepth(1.0); // Clear everything

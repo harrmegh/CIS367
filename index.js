@@ -1,3 +1,5 @@
+// index.js
+// Code by the developers at Mozilla.org with some added comments by Meghan Harris
 import { initBuffers } from "./init-buffers.js";
 import { drawScene } from "./draw-scene.js";
 
@@ -11,6 +13,7 @@ let deltaTime = 0;
 // start here
 //
 function main() {
+  // Used getELementById vs getContext()
   const canvas = document.getElementById("gl-canvas");
   // Initialize the GL context
   const gl = canvas.getContext("webgl");
@@ -29,7 +32,10 @@ function main() {
   gl.clear(gl.COLOR_BUFFER_BIT);
 
   // Vertex shader program
-  // Vertex shader program
+  // aVertexPosition -> vertex position
+  // uProjectionMatrix and uModelViewMatrix -> two 4x4 matrices
+  // gl_Position is the product of multiplying the two above matrices
+  // by the vertex position
 
   const vsSource = `
     attribute vec4 aVertexPosition;
@@ -61,10 +67,6 @@ function main() {
   // Collect all the info needed to use the shader program.
   // Look up which attribute our shader program is using
   // for aVertexPosition and look up uniform locations.
-  // Collect all the info needed to use the shader program.
-  // Look up which attributes our shader program is using
-  // for aVertexPosition, aVertexColor and also
-  // look up uniform locations.
   const programInfo = {
     program: shaderProgram,
     attribLocations: {
@@ -133,25 +135,26 @@ function initShaderProgram(gl, vsSource, fsSource) {
 
 //
 // creates a shader of the given type, uploads the source and
-// compiles it.
+// compiles it.  Takes as input the WebGL context, the shader
+// type, and the source code, then creates and compiles the
+// shader.
 //
 function loadShader(gl, type, source) {
+  // A new shader, created
   const shader = gl.createShader(type);
 
   // Send the source to the shader object
-
   gl.shaderSource(shader, source);
 
   // Compile the shader program
-
   gl.compileShader(shader);
 
   // See if it compiled successfully
-
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
     alert(
       `An error occurred compiling the shaders: ${gl.getShaderInfoLog(shader)}`
     );
+    // If it's bad, kick it to the curb
     gl.deleteShader(shader);
     return null;
   }

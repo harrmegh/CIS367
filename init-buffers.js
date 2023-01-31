@@ -1,3 +1,7 @@
+// init-buffers.js
+// Code by wonderful devs at Mozilla.org with some color tinkering by Meghan Harris
+// This file serves as a place to house a buffer that contains our square plane's
+// vertex positions, and colors of those planes.
 function initBuffers(gl) {
   const positionBuffer = initPositionBuffer(gl);
 
@@ -17,7 +21,7 @@ function initPositionBuffer(gl) {
   const positionBuffer = gl.createBuffer();
 
   // Select the positionBuffer as the one to apply buffer
-  // operations to from here out.
+  // operations to from here out. Bind to the context.
   gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 
   // Now create an array of positions for the square.
