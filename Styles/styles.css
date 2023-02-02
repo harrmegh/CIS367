@@ -15,7 +15,6 @@ h1 {
 .navigation {
   display: flex;
   flex-direction: column;
-  /* flex: 50px 0 100px; */
   margin-left: 85px;
   padding-bottom: 70px;
 }
