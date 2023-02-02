@@ -24,7 +24,7 @@ window.onload = function init() {
 
   // configure WebGL, canvas in middle (0, 0)
   gl.viewport(0, 0, canvas.width, canvas.height);
-  gl.clearColor(1.0, 1.0, 1.0, 1.0);
+  gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
   // load and initialize shaders
   var program = initShaders(gl, "vertex-shader", "fragment-shader");
@@ -48,15 +48,15 @@ window.onload = function init() {
   window.addEventListener(
     "keydown",
     function (e) {
-      if (e === 37) {
+      if (e.keyCode === 37) {
         dirs[0] = false;
-      } else if (e === 39) {
+      } else if (e.keyCode === 39) {
         dirs[0] = true;
-      } else if (e === 38) {
+      } else if (e.keyCode === 38) {
         dirs[1] = true;
-      } else if (e === 40) {
+      } else if (e.keyCode === 40) {
         dirs[1] = false;
-      } else if (e === 32) {
+      } else if (e.keyCode === 32) {
         dirs[0] = null;
         dirs[1] = null;
       }
@@ -72,7 +72,6 @@ window.onload = function init() {
 function render() {
   gl.clear(gl.COLOR_BUFFER_BIT);
   gl.drawArrays(gl.TRIANGLES, 0, 3);
-
   // Update your x/y positions
   //   x += 0.1;
   //   y += 0.1;
