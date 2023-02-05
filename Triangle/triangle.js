@@ -21,7 +21,7 @@ window.onload = function init() {
 
   // configure WebGL, canvas in middle (0, 0)
   gl.viewport(0, 0, canvas.width, canvas.height);
-  gl.clearColor(1.0, 1.0, 1.0, 1.0);
+  gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
   // load and initialize shaders
   var program = initShaders(gl, "vertex-shader", "fragment-shader");
