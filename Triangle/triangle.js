@@ -1,7 +1,8 @@
 // Erik Fredericks with a few notations by Meghan Harris
 // Graphics object
 var gl;
-var points;
+
+var colors = [vec3(1.0, 0.0, 0.0), vec3(0.0, 1.0, 0.5), vec3(0.0, 0.0, 0.5)];
 
 // Once browser loaded, run this js code, aka main()
 // Purpose is to set up the WebGL context and start rendering content
@@ -36,6 +37,15 @@ window.onload = function init() {
   var vPosition = gl.getAttribLocation(program, "vPosition");
   gl.vertexAttribPointer(vPosition, 2, gl.FLOAT, false, 0, 0);
   gl.enableVertexAttribArray(vPosition);
+
+  var cBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, cBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, flatten(colors), gl.STATIC_DRAW);
+
+  var vColor = gl.getAttribLocation(program, "vColor");
+  gl.vertexAttribPointer(vColor, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(vColor);
+
   render();
 };
 
