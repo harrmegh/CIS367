@@ -30,21 +30,20 @@
       varying vec4 fColor;
 
       void main() {
-         // gl_FragColor = vec4(0.362, 0.274, 1.0, 1.0);
          gl_FragColor = fColor;
       }
     </script>
 
     <!-- include our libraries for WebGL -->
-    <script src="./Common/webgl-utils.js"></script>
-    <script src="./Common/initShaders.js"></script>
-    <script src="./Common/MV.js"></script>
+    <script src="../Common/webgl-utils.js"></script>
+    <script src="../Common/initShaders.js"></script>
+    <script src="../Common/MV.js"></script>
 
     <!-- the ACTUAL triangle code!! -->
     <script src="triangle-animate.js"></script>
   </head>
   <body style="background: black">
-    <canvas id="gl-canvas" width="640" height="480">
+    <canvas id="gl-canvas" width="900" height="700">
       Your browser doesn't support HTML5! Sorry.
     </canvas>
   </body>
