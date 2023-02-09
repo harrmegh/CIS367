@@ -28,7 +28,7 @@ window.onload = function init() {
     alert("WebGL unavailable");
   }
   // Triangle vertices
-  var vertices = [vec2(-0.25, -0.25), vec2(0, 0.25), vec2(0.25, -0.25)];
+  var vertices = [vec2(0, 0.25), vec2(-0.25, 0), vec2(0.25, 0), vec2(0, -0.25)];
 
   // configure WebGL, canvas in middle (0, 0)
   gl.viewport(0, 0, canvas.width, canvas.height);
@@ -66,11 +66,11 @@ window.onload = function init() {
 function render() {
   // gl.clear(gl.COLOR_BUFFER_BIT);
 
-  theta += 0.1;
+  theta += 0.025;
   gl.uniform1f(thetaLoc, theta);
 
   gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-  requestAnimFrame(render);
+  window.requestAnimFrame(render);
   // setTimeout(render, 1000);
   // render();
 }
