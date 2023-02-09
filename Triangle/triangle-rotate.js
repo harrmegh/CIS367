@@ -54,11 +54,12 @@ window.onload = function init() {
 
 // Package it up and ship it off
 function render() {
-  gl.clear(gl.COLOR_BUFFER_BIT);
+  setTimeout(function () {
+    window.requestAnimationFrame(render);
+    gl.clear(gl.COLOR_BUFFER_BIT);
 
-  theta += 0.025;
-  gl.uniform1f(thetaLoc, theta);
-  gl.drawArrays(gl.TRIANGLES, 0, 3);
-  //   window.requestAnimationFrame(render);
-  setTimeout(render, 100);
+    theta += 0.025;
+    gl.uniform1f(thetaLoc, theta);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  }, 100); // every 100 ms
 }
