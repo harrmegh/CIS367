@@ -1,0 +1,52 @@
+<!--
+    triangle.html
+    Erik Fredericks with small color addition by Meghan Harris
+    Barebones triangle webGL
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- define our shaders! -->
+    <!-- Shade changes -->
+    <!-- vec4 is a 4-component vector -->
+    <script id="vertex-shader" type="x-shader/x-vertex">
+      attribute vec4 vPosition;
+      attribute vec4 vColor;
+      uniform float x;
+      uniform float y;
+      varying vec4 fColor;
+
+      void main() {
+        gl_Position.x += x + vPosition.x;
+        gl_Position.y += y + vPosition.y;
+        gl_Position.z = 0.0;
+        gl_Position.w = 1.0;
+        fColor = vColor;
+      }
+    </script>
+    <!-- Color changes -->
+    <script id="fragment-shader" type="x-shader/x-fragment">
+      precision mediump float;
+      varying vec4 fColor;
+
+      void main() {
+         // gl_FragColor = vec4(0.362, 0.274, 1.0, 1.0);
+         gl_FragColor = fColor;
+      }
+    </script>
+
+    <!-- include our libraries for WebGL -->
+    <script src="../Common/webgl-utils.js"></script>
+    <script src="../Common/initShaders.js"></script>
+    <script src="../Common/MV.js"></script>
+
+    <!-- the ACTUAL triangle code!! -->
+    <script src="triangle-anim.js"></script>
+  </head>
+  <body style="background: black">
+    <canvas id="gl-canvas" width="640" height="480">
+      Your browser doesn't support HTML5! Sorry.
+    </canvas>
+  </body>
+</html>
