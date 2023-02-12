@@ -59,7 +59,7 @@ span {
 }
 
 #side-menu:hover {
-  width: 400px !important;	
+  width: 400px;	
   display:inline-block;
 }
 #side-menu:hover span{
