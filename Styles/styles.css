@@ -33,3 +33,35 @@ li {
   width: 70px;
   height: 70px;
 }
+
+.play-button {
+  background: white;
+  font-family:inherit;
+  font-size: inherit;
+  padding: 0px;
+  cursor: pointer;
+}
+
+.play-button:hover {
+  background-color: slategray;
+}
+
+span {
+  display: none;
+}
+
+#side-menu {
+  background-color : black;
+  color:white;
+  width:80px;
+  padding:20px;
+  list-style:none;
+}
+
+#side-menu:hover {
+  width: 400px !important;	
+  display:inline-block;
+}
+#side-menu:hover span{
+  display:inline-block;
+}

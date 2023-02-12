@@ -1,0 +1,10 @@
+<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="70px" height="70px" viewBox="0 0 470 440" style="enable-background:new 0 0 470 440;" xml:space="preserve" >
+     <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
+    </linearGradient>
+  </defs>
+<polygon id="homangle" fill="url(#grad1)" stroke="orange" stroke-opacity="0.6" stroke-width="6" stroke-miterlimit="10" points="235.49,7 5,437 465,437 "/>
+</svg>
