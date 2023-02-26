@@ -1,4 +1,4 @@
-// square.js
+// polygon.js
 // Erik Fredericks with a few notations by Meghan Harris
 // Graphics object
 var gl;
@@ -21,15 +21,26 @@ window.onload = function init() {
   // Four vertices -- using vec2 type from the MV.js library
   // JS array different from C/Java: object with methods and properties
   // Order of these matter!
+  // var vertices = [
+  //   vec2(0.0, 0.0),
+  //   vec2(-0.5, 0.25),
+  //   vec2(0.0, 0.5),
+  //   vec2(0.5, 0.25),
+  //   vec2(0.5, -0.25),
+  //   vec2(0.0, -0.5),
+  //   vec2(-0.5, -0.25),
+  //   vec2(-0.5, 0.25),
+  // ];
+
   var vertices = [
     vec2(0.0, 0.0),
-    vec2(-0.5, 0.25),
     vec2(0.0, 0.5),
     vec2(0.5, 0.25),
     vec2(0.5, -0.25),
     vec2(0.0, -0.5),
     vec2(-0.5, -0.25),
     vec2(-0.5, 0.25),
+    vec2(0.0, 0.5),
   ];
 
   // Configure WebGL
