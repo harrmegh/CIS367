@@ -1,5 +1,5 @@
 var tree;
-var maximumDistance = 20;
+var maximumDistance = 100;
 var minimumDistance = 10;
 
 function setup() {
@@ -10,4 +10,5 @@ function setup() {
 function draw() {
   background(51);
   tree.show();
+  tree.grow();
 }

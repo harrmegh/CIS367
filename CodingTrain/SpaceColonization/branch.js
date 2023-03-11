@@ -3,9 +3,18 @@ function Branch(parent, position, direction) {
   this.parent = parent;
   this.position = position;
   this.direction = direction;
+  this.originalDirection = this.direction.copy();
+  this.count = 0;
+  this.length = 1;
+
+  this.reset = function () {
+    this.direction = this.originalDirection.copy();
+    this.count = 0;
+  };
 
   this.next = function () {
-    var nextPosition = p5.Vector.add(this.position, this.direction);
+    var nextDirection = p5.Vector.mult(this.direction, this.length);
+    var nextPosition = p5.Vector.add(this.position, nextDirection);
     var nextBranch = new Branch(this, nextPosition, this.direction.copy()); // Copy to copy vector when branches change direction
     return nextBranch;
   };
