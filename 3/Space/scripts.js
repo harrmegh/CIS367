@@ -30,9 +30,28 @@ scene.add(cube);
 
 // make a plane
 const planeGeometry = new THREE.PlaneGeometry(30, 30);
-const planeMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+const planeMaterial = new THREE.MeshBasicMaterial({
+  color: 0xffffff,
+  side: THREE.DoubleSide,
+});
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
 scene.add(plane);
+plane.rotation.x = -0.5 * Math.PI; // make plane match grid rotation
+
+// make a grid
+const grid = new THREE.GridHelper(30);
+scene.add(grid);
+
+// add a sphere
+const sphereGeometry = new THREE.SphereGeometry(4);
+const sphereMaterial = new THREE.MeshBasicMaterial({
+  color: 0x0000ff,
+  wireframe: true,
+});
+const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+scene.add(sphere);
+
+// 17:19
 
 function animate() {
   requestAnimationFrame(animate);
