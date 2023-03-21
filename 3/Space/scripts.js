@@ -58,12 +58,22 @@ const sphereMaterial = new THREE.MeshStandardMaterial({
   wireframe: true,
   // wireframe: false,
 });
-
 const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 scene.add(sphere);
 sphere.position.set(-10, 10, 0);
 sphere.castShadow = true;
 const sphereId = sphere.id;
+
+const sunGeometry = new THREE.SphereGeometry(16, 40, 40);
+const sunMaterial = new THREE.MeshStandardMaterial({
+  color: 0xffffe0,
+  wireframe: true,
+});
+const sun = new THREE.Mesh(sunGeometry, sunMaterial);
+scene.add(sun);
+sun.position.set(0, 0, 0);
+sun.castShadow = true;
+// const sunId = sun.id;
 
 // add lighting
 const ambientLight = new THREE.AmbientLight(0x333333);
