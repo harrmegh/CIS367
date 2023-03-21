@@ -1,5 +1,5 @@
 import * as THREE from "three";
-// import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 const scene = new THREE.Scene();
 let boxes = [];
@@ -93,6 +93,23 @@ floorMesh.receiveShadow = true;
 // boxes.receiveShadow = true;
 // boxMesh.castShadow = true;
 pointLight.castShadow = true;
+
+// Load model
+const loader = new GLTFLoader();
+
+loader.load(
+  "robot_dog.glb",
+  function (gltf) {
+    gltf.scene.scale.set(0.5, 0.5, 0.5);
+    const root = gltf.scene;
+    scene.add(root);
+    gltf.scene.position.set(0, 0, -2);
+  },
+  undefined,
+  function (error) {
+    console.error(error);
+  }
+);
 
 function animate() {
   for (let i = 0; i < boxes.length; i++) {
