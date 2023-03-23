@@ -4,9 +4,9 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 const scene = new THREE.Scene();
 let boxes = [];
 
-const fov = 100; // increased the near plane
+const fov = 150; // increased the near plane
 const near = 0.1;
-const far = 10; // decreased the far plane
+const far = 1000; // decreased the far plane
 const camera = new THREE.PerspectiveCamera(
   fov,
   window.innerWidth / window.innerHeight,
@@ -16,7 +16,7 @@ const camera = new THREE.PerspectiveCamera(
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
-renderer.setClearColor(0xff0000);
+renderer.setClearColor(0x94ffff);
 
 // Add a floor to the scene
 let floorWidth = 20;
@@ -111,10 +111,27 @@ loader.load(
   }
 );
 
+// add dis torus
+let ice = textureLoader.load("ice.png");
+ice.wrapS = THREE.RepeatWrapping;
+ice.wrapT = THREE.RepeatWrapping;
+ice.repeat.set(40, 50);
+const torusGeometry = new THREE.TorusGeometry(6, 2, 16, 100);
+const torusMaterial = new THREE.MeshStandardMaterial({
+  map: ice,
+  metalness: 0,
+  roughness: 1,
+  // wireframe: true,
+});
+const torus = new THREE.Mesh(torusGeometry, torusMaterial);
+scene.add(torus);
+torus.position.set(0, 0, 0);
+
 function animate() {
   for (let i = 0; i < boxes.length; i++) {
-    boxes[i].rotateX(Math.PI / (100 + i));
+    boxes[i].rotateX(Math.PI / (100 + i)); // Decrease to 10 and the boxes move rapidly.
   }
+  torus.rotateZ(Math.PI / 1000);
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
 }
