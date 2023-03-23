@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://pixijs.download/release/pixi.js"></script>
+  </head>
+  <body>
+    <script>
+      // The majority of the code written here was a combination of the Pixi
+      // tutorial and the Learning Pixi Github Repo that you will find
+      // here: https://github.com/kittykatattack/learningPixi.
+      const Application = PIXI.Application,
+        Container = PIXI.Container,
+        TextureCache = PIXI.utils.TextureCache,
+        Sprite = PIXI.Sprite;
+
+      //Create a Pixi Application
+      const app = new Application({
+        width: 1000,
+        height: 800,
+        antialias: true,
+        transparent: false,
+        resolution: 1,
+      });
+      document.body.appendChild(app.view);
+
+      let sprite, state;
+
+      function setup() {
+        // Magically load the PNG asynchronously
+        sprite = PIXI.Sprite.from("cat.png");
+        sprite.height = 150;
+        sprite.width = 250;
+        sprite.y = 96;
+        sprite.vx = 0;
+        sprite.vy = 0;
+        // add sprite to stage
+        app.stage.addChild(sprite);
+
+        //Capture the keyboard arrow keys
+        const left = keyboard("ArrowLeft"),
+          up = keyboard("ArrowUp"),
+          right = keyboard("ArrowRight"),
+          down = keyboard("ArrowDown");
+
+        //Left arrow key `press` method
+        left.press = () => {
+          //Change the sprite's velocity when the key is pressed
+          sprite.vx = -5;
+          sprite.vy = 0;
+        };
+
+        //Left arrow key `release` method
+        left.release = () => {
+          //If the left arrow has been released, and the right arrow isn't down,
+          //and the sprite isn't moving vertically:
+          //Stop the sprite
+          if (!right.isDown && sprite.vy === 0) {
+            sprite.vx = 0;
+          }
+        };
+
+        //Up
+        up.press = () => {
+          sprite.vy = -5;
+          sprite.vx = 0;
+        };
+        up.release = () => {
+          if (!down.isDown && sprite.vx === 0) {
+            sprite.vy = 0;
+          }
+        };
+
+        //Right
+        right.press = () => {
+          sprite.vx = 5;
+          sprite.vy = 0;
+        };
+        right.release = () => {
+          if (!left.isDown && sprite.vy === 0) {
+            sprite.vx = 0;
+          }
+        };
+
+        //Down
+        down.press = () => {
+          sprite.vy = 5;
+          sprite.vx = 0;
+        };
+        down.release = () => {
+          if (!up.isDown && sprite.vx === 0) {
+            sprite.vy = 0;
+          }
+        };
+
+        //Set the game state
+        state = play;
+
+        //Start the game loop by adding the `gameLoop` function to
+        //Pixi's `ticker` and providing it with a `delta` argument.
+        app.ticker.add((delta) => gameLoop(delta));
+      }
+
+      function gameLoop(delta) {
+        state(delta);
+      }
+
+      function play(delta) {
+        let collision = contain(sprite, {
+          x: 0,
+          y: 0,
+          width: 1000,
+          height: 800,
+        });
+
+        if (collision === "top" || collision === "bottom") {
+          sprite.vy *= -1;
+        } else if (collision === "left" || collision === "right") {
+          sprite.vx *= -1;
+        } else {
+          sprite.x += sprite.vx;
+          sprite.y += sprite.vy;
+        }
+      }
+
+      function keyboard(value) {
+        const key = {};
+        key.value = value;
+        key.isDown = false;
+        key.isUp = true;
+        key.press = undefined;
+        key.release = undefined;
+        //The `downHandler`
+        key.downHandler = (event) => {
+          if (event.key === key.value) {
+            if (key.isUp && key.press) {
+              key.press();
+            }
+            key.isDown = true;
+            key.isUp = false;
+            event.preventDefault();
+          }
+        };
+
+        //The `upHandler`
+        key.upHandler = (event) => {
+          if (event.key === key.value) {
+            if (key.isDown && key.release) {
+              key.release();
+            }
+            key.isDown = false;
+            key.isUp = true;
+            event.preventDefault();
+          }
+        };
+
+        //Attach event listeners
+        const downListener = key.downHandler.bind(key);
+        const upListener = key.upHandler.bind(key);
+
+        window.addEventListener("keydown", downListener, false);
+        window.addEventListener("keyup", upListener, false);
+
+        // Detach event listeners
+        key.unsubscribe = () => {
+          window.removeEventListener("keydown", downListener);
+          window.removeEventListener("keyup", upListener);
+        };
+
+        return key;
+      }
+
+      function contain(sprite, container) {
+        let collision = undefined;
+
+        //Left
+        if (sprite.x < container.x) {
+          sprite.x = container.x;
+          collision = "left";
+        }
+
+        //Top
+        if (sprite.y < container.y) {
+          sprite.y = container.y;
+          collision = "top";
+        }
+
+        //Right
+        if (sprite.x + sprite.width > container.width) {
+          sprite.x = container.width - sprite.width;
+          collision = "right";
+        }
+
+        //Bottom
+        if (sprite.y + sprite.height > container.height) {
+          sprite.y = container.height - sprite.height;
+          collision = "bottom";
+        }
+
+        //Return the `collision` value
+        return collision;
+      }
+      setup();
+    </script>
+  </body>
+</html>
