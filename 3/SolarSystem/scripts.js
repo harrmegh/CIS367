@@ -10,6 +10,7 @@ document.body.appendChild(renderer.domElement);
 
 // Set up raycaster
 const raycaster = new THREE.Raycaster();
+const textureLoader = new THREE.TextureLoader();
 
 // Interaction Controls
 const pointer = new THREE.Vector2();
@@ -25,27 +26,62 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 const controls = new OrbitControls(camera, renderer.domElement);
-camera.position.set(1000, 30, 30);
+// camera.position.set(1000, 30, 30);
+camera.position.set(500, 250, 300);
 controls.update();
 
 // Make Sun
 const sunSize = 200;
-const sunGeometry = new THREE.SphereGeometry(sunSize, 40, 40);
-const sunMaterial = new THREE.MeshStandardMaterial({
-  color: 0xffffe0,
-  roughness: 0.4,
-  metalness: 0.5,
-  emissive: 0xffffe0,
-  emissiveIntensity: 1,
-  wireframe: true,
+const sunGeometry = new THREE.SphereGeometry(sunSize, 15, 15);
+// const sunMaterial = new THREE.MeshPhongMaterial({
+//   color: 0xffffe0,
+//   roughness: 0.4,
+//   metalness: 0.5,
+//
+//   wireframe: true,
+//   wireframeLinewidth: 20,
+//   wireframeLinecap: "square",
+//   wireframeLinejoin: "bevel",
+//   transparent: true,
+//   side: THREE.DoubleSide,
+//   shininess: 30,
+//   refractionRatio: 0.98,
+// });
+const material = new THREE.MeshStandardMaterial({
+  // wireframe: true,
   transparent: true,
+  opacity: 0.6,
   side: THREE.DoubleSide,
+  flatShading: true,
+  color: 0xffffe0,
+  emissive: 0xffffe0,
+  emissiveIntensity: 0.9,
 });
-const sun = new THREE.Mesh(sunGeometry, sunMaterial);
+const sun = new THREE.Mesh(sunGeometry, material);
 scene.add(sun);
-sun.position.set(0, 0, 0);
-sun.castShadow = true;
-const sunId = sun.id;
+
+const wireframe = new THREE.WireframeGeometry(sunGeometry);
+const line = new THREE.LineSegments(
+  wireframe,
+  new THREE.LineBasicMaterial({ color: 0xffff9f })
+);
+
+// const edgesGeometry = new THREE.EdgesGeometry(sunGeometry);
+// const wireframe = new THREE.LineSegments(
+//   edgesGeometry,
+//   new THREE.LineBasicMaterial({ color: 0xffff9f })
+// );
+// sun.add(wireframe);
+line.material.depthTest = false;
+line.material.opacity = 0.75;
+line.material.transparent = true;
+sun.add(line);
+
+// const sun = new THREE.Mesh(sunGeometry, sunMaterial);
+// scene.add(sun);
+// sun.position.set(0, 0, 0);
+// sun.castShadow = true;
+// const sunId = sun.id;
 const sunLight = new THREE.PointLight(0xffffff, 9, 3000);
 sun.add(sunLight);
 
