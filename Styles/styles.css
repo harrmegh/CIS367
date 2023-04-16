@@ -35,6 +35,11 @@ li {
   height: 70px;
 }
 
+.totoro {
+  width: 100px;
+  height: 100px;
+}
+
 .play-button {
   background: white;
   font-family:inherit;
